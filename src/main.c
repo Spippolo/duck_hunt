@@ -15,6 +15,8 @@ int main(int argc, char* argv[]) {
     return 1;
   }
 
+  init_main_window(window);
+
   main_loop(window);
 
   destroy_main_window(window);
