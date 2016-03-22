@@ -5,11 +5,19 @@ void main_loop(SDL_Window* window) {
   bool running = true;
   SDL_Event event;
 
+  Enemy* enemy;
+
   while (running) {
     current_time = SDL_GetTicks();
     if (current_time > last_time + 1000.0 / 30.0) {
       last_time = current_time;
       printf("frame!\n");
+
+      if (enemy == NULL) {
+        enemy = new_enemy();
+      }
+
+      main_window_move_enemy(window, enemy);
     }
 
     while (SDL_PollEvent(&event) != 0) {

@@ -12,8 +12,8 @@ ASSETS = \
 	assets/images/character/4.png \
 	assets/images/character/5.png
 
-all: main.o window.o event.o
-	$(CC) $(L_OPTS) $(ARGS) -lm main.o window.o event.o -o main.out
+all: main.o window.o enemy.o event.o
+	$(CC) $(L_OPTS) $(ARGS) -lm main.o window.o enemy.o event.o -o main.out
 
 main.o: src/main.c
 	$(CC) -c $(C_OPTS) src/main.c
@@ -23,6 +23,9 @@ window.o: src/ui/window.c $(ASSETS)
 
 event.o: src/event.c
 	$(CC) -c $(C_OPTS) src/event.c
+
+enemy.o: src/ai/enemy.c $(ASSETS)
+	$(CC) -c $(C_OPTS) src/ai/enemy.c
 
 clean:
 	rm *.o *.out
