@@ -8,6 +8,7 @@ Enemy* new_enemy() {
   enemy->y = 0;
   enemy->w = 70;
   enemy->h = 70;
+  enemy->move_speed = 4;
 
   enemy->bg = IMG_Load("./assets/images/character/1.png");
 
@@ -20,8 +21,8 @@ Enemy* new_enemy() {
 }
 
 void move_enemy(Enemy* enemy) {
-  enemy->x += 1;
-  enemy->y += 1;
+  enemy->x += 1 * enemy->move_speed;
+  enemy->y += 1 * enemy->move_speed;
 
   (enemy->rect).x = enemy->x;
   (enemy->rect).y = enemy->y;
