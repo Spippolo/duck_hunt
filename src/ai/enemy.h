@@ -7,7 +7,8 @@ struct _Enemy {
   int y;
   int w;
   int h;
-  int move_speed;
+  int vx;
+  int vy;
   SDL_Surface* bg;
   SDL_Rect rect;
 };
