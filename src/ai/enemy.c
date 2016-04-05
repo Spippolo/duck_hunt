@@ -30,8 +30,8 @@ Enemy* new_enemy() {
       y = -69;
     }
   }
-  printf("VX => %d", vx);
-  printf("VY => %d", vy);
+  printf("VX => %d\n", vx);
+  printf("VY => %d\n", vy);
   Enemy* enemy = (Enemy *)malloc(sizeof(Enemy));
   enemy->x = x;
   enemy->y = y;
@@ -51,8 +51,8 @@ Enemy* new_enemy() {
 }
 
 void move_enemy(Enemy* enemy) {
-  enemy->x += 1 * enemy->vx;
-  enemy->y += 1 * enemy->vy;
+  enemy->x += enemy->vx;
+  enemy->y += enemy->vy;
 
   (enemy->rect).x = enemy->x;
   (enemy->rect).y = enemy->y;

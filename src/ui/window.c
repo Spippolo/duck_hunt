@@ -57,14 +57,29 @@ void destroy_main_window(SDL_Window* window) {
   SDL_DestroyWindow(window);
 }
 
-void main_window_move_enemy(SDL_Window* window, Enemy* enemy) {
-  move_enemy(enemy);
+static bool check_enemy_visibility(Enemy* enemy) {
+  return !(enemy->x < -70 || enemy->y < -70 || enemy->x > 600 || enemy->y > 600);
+}
 
-  SDL_Surface* enemy_sf = get_enemy_surface(enemy);
-  SDL_Rect enemy_rect = get_enemy_rect(enemy);
+void main_window_move_enemy(SDL_Window* window, Enemy** enemy) {
+  printf("ENEMY => %d\n", *enemy);
+  move_enemy(*enemy);
 
-  surfaces[1] = enemy_sf;
-  rects[1] = enemy_rect;
+  if (check_enemy_visibility(*enemy)) {
 
+    SDL_Surface* enemy_sf = get_enemy_surface(*enemy);
+    SDL_Rect enemy_rect = get_enemy_rect(*enemy);
+
+    surfaces[1] = enemy_sf;
+    rects[1] = enemy_rect;
+
+  } else {
+    // destroy the enemy
+    if (*enemy != NULL) {
+      printf("FREE\n");
+      free(*enemy);
+      *enemy = NULL;
+    }
+  }
   init_surface(window);
 }
