@@ -30,8 +30,8 @@ Enemy* new_enemy() {
       y = -69;
     }
   }
-  printf("VX => %d\n", vx);
-  printf("VY => %d\n", vy);
+  // printf("VX => %d\n", vx);
+  // printf("VY => %d\n", vy);
   Enemy* enemy = (Enemy *)malloc(sizeof(Enemy));
   enemy->x = x;
   enemy->y = y;
@@ -57,7 +57,7 @@ void move_enemy(Enemy* enemy) {
   (enemy->rect).x = enemy->x;
   (enemy->rect).y = enemy->y;
 
-  printf("Moving: x -> %d, y -> %d\n", enemy->x, enemy->y);
+  // printf("Moving: x -> %d, y -> %d\n", enemy->x, enemy->y);
 }
 
 SDL_Surface* get_enemy_surface(Enemy* enemy) {
@@ -66,4 +66,8 @@ SDL_Surface* get_enemy_surface(Enemy* enemy) {
 
 SDL_Rect get_enemy_rect(Enemy* enemy) {
   return enemy->rect;
+}
+
+bool enemy_hit(Enemy *enemy, int x, int y) {
+  return (enemy->x <= x && x <= (enemy->x + enemy->w) && enemy->y <= y && y <= (enemy->y + enemy->h));
 }

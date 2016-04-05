@@ -62,7 +62,7 @@ static bool check_enemy_visibility(Enemy* enemy) {
 }
 
 void main_window_move_enemy(SDL_Window* window, Enemy** enemy) {
-  printf("ENEMY => %d\n", *enemy);
+  // printf("ENEMY => %d\n", *enemy);
   move_enemy(*enemy);
 
   if (check_enemy_visibility(*enemy)) {
@@ -76,7 +76,7 @@ void main_window_move_enemy(SDL_Window* window, Enemy** enemy) {
   } else {
     // destroy the enemy
     if (*enemy != NULL) {
-      printf("FREE\n");
+      // printf("FREE\n");
       free(*enemy);
       *enemy = NULL;
     }
