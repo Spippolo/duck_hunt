@@ -7,8 +7,8 @@ struct _Enemy {
   int y;
   int w;
   int h;
-  int vx;
-  int vy;
+  float vx;
+  float vy;
   SDL_Surface* bg;
   SDL_Rect rect;
 };
@@ -19,3 +19,5 @@ SDL_Surface*  get_enemy_surface(Enemy* enemy);
 SDL_Rect      get_enemy_rect(Enemy* enemy);
 bool          enemy_hit(Enemy* enemy, int x, int y);
 void          init_enemy_position(Enemy* enemy);
+void          invert_vy(Enemy* enemy);
+void          invert_vx(Enemy* enemy);

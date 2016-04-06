@@ -61,9 +61,32 @@ static bool check_enemy_visibility(Enemy* enemy) {
   return !(enemy->x < -70 || enemy->y < -70 || enemy->x > 600 || enemy->y > 600);
 }
 
+static bool check_left_wall_hit(Enemy* enemy) {
+  return (enemy->x <= 0);
+}
+static bool check_right_wall_hit(Enemy* enemy) {
+  return (enemy->x >= (600 - enemy->w));
+}
+static bool check_top_wall_hit(Enemy* enemy) {
+  return (enemy->y <= 0);
+}
+static bool check_bottom_wall_hit(Enemy* enemy) {
+  return (enemy->y >= (600 - enemy->h));
+}
+
 void main_window_move_enemy(SDL_Window* window, Enemy** enemy) {
   // printf("ENEMY => %d\n", *enemy);
   move_enemy(*enemy);
+
+  if (check_left_wall_hit(*enemy)) {
+    invert_vx(*enemy);
+  } else if (check_right_wall_hit(*enemy)) {
+    invert_vx(*enemy);
+  } else if (check_top_wall_hit(*enemy)) {
+    invert_vy(*enemy);
+  } else if (check_bottom_wall_hit(*enemy)) {
+    invert_vy(*enemy);
+  }
 
   if (check_enemy_visibility(*enemy)) {
 
@@ -77,7 +100,7 @@ void main_window_move_enemy(SDL_Window* window, Enemy** enemy) {
     // destroy the enemy
     if (*enemy != NULL) {
       // printf("FREE\n");
-      init_enemy_position(*enemy);
+      // init_enemy_position(*enemy);
       // *enemy = NULL;
     }
   }
