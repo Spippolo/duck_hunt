@@ -15,6 +15,7 @@ void main_loop(SDL_Window* window) {
         mouse = (SDL_MouseButtonEvent*) &event;
         if (enemy_hit(enemy, mouse->x, mouse->y)) {
           printf("HIT!\n");
+          init_enemy_position(enemy);
         }
         break;
 
