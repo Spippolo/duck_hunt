@@ -77,8 +77,8 @@ void main_window_move_enemy(SDL_Window* window, Enemy** enemy) {
     // destroy the enemy
     if (*enemy != NULL) {
       // printf("FREE\n");
-      free(*enemy);
-      *enemy = NULL;
+      init_enemy_position(*enemy);
+      // *enemy = NULL;
     }
   }
   init_surface(window);

@@ -3,6 +3,23 @@
 #include "./enemy.h"
 
 Enemy* new_enemy() {
+
+  Enemy* enemy = (Enemy *)malloc(sizeof(Enemy));
+  init_enemy_position(enemy);
+  return enemy;
+}
+
+void move_enemy(Enemy* enemy) {
+  enemy->x += enemy->vx;
+  enemy->y += enemy->vy;
+
+  (enemy->rect).x = enemy->x;
+  (enemy->rect).y = enemy->y;
+
+  // printf("Moving: x -> %d, y -> %d\n", enemy->x, enemy->y);
+}
+
+void init_enemy_position(Enemy* enemy) {
   time_t t;
   srand((unsigned) time(&t));
 
@@ -32,7 +49,7 @@ Enemy* new_enemy() {
   }
   // printf("VX => %d\n", vx);
   // printf("VY => %d\n", vy);
-  Enemy* enemy = (Enemy *)malloc(sizeof(Enemy));
+
   enemy->x = x;
   enemy->y = y;
   enemy->w = 70;
@@ -47,17 +64,6 @@ Enemy* new_enemy() {
   (enemy->rect).w = enemy->w;
   (enemy->rect).h = enemy->h;
 
-  return enemy;
-}
-
-void move_enemy(Enemy* enemy) {
-  enemy->x += enemy->vx;
-  enemy->y += enemy->vy;
-
-  (enemy->rect).x = enemy->x;
-  (enemy->rect).y = enemy->y;
-
-  // printf("Moving: x -> %d, y -> %d\n", enemy->x, enemy->y);
 }
 
 SDL_Surface* get_enemy_surface(Enemy* enemy) {
